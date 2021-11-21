@@ -1,0 +1,57 @@
+plugins {
+    id "java"
+    id "io.qameta.allure" version "2.9.6"
+}
+
+group "guru.qa.homework"
+version "1.0-SNAPSHOT"
+
+def junitVersion = "5.8.1",
+    selenideVersion = "5.25.0",
+    allureVersion = "2.16.1",
+    pdfTestVersion = "1.7.0",
+    xlsTestVersion = "1.2",
+    openCsvVersion = "5.5.2",
+    commonsIoVersion = "2.11.0"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        autoconfigure.set(true)
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "commons-io:commons-io:$commonsIoVersion",
+            "com.codeborne:pdf-test:$pdfTestVersion",
+            "com.codeborne:xls-test:$xlsTestVersion",
+            "com.opencsv:opencsv:$openCsvVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion"
+    )
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.encoding("UTF-8")
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
