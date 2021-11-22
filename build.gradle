@@ -10,7 +10,7 @@ def junitVersion = "5.8.1",
     selenideVersion = "5.25.0",
     allureVersion = "2.16.1",
     pdfTestVersion = "1.7.0",
-    xlsTestVersion = "1.2",
+    xlsTestVersion = "1.4.3",
     openCsvVersion = "5.5.2",
     commonsIoVersion = "2.11.0"
 
